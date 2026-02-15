@@ -20,7 +20,7 @@ export XDG_CONFIG_HOME=/home/daniel/.config
 source ~/.config/nnn/config.zsh
 source ~/.aliases
 source ~/git/personal-setup/shell/commons
-export PATH=$PATH:~/git/personal-setup/scripts
+export PATH=$PATH:~/.scripts
 
 # path to the git root
 export GIT_PATH=~/git
