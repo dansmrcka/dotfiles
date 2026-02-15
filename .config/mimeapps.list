@@ -1,0 +1,22 @@
+[Default Applications]
+text/html=brave-browser.desktop
+x-scheme-handler/http=brave-browser.desktop
+x-scheme-handler/https=brave-browser.desktop
+x-scheme-handler/about=brave-browser.desktop
+x-scheme-handler/unknown=brave-browser.desktop
+x-scheme-handler/msteams=teams.desktop
+image/jpeg=vimiv.desktop
+image/png=vimiv.desktop
+text/plain=vim.desktop
+text/markdown=vim.desktop
+video/x-msvideo=mpv.desktop
+video/mp4=mpv.desktop
+video/matroska=mpv.desktop
+video/x-matroska=mpv.desktop
+application/pdf=org.pwmt.zathura.desktop
+x-scheme-handler/eclipse+command=_usr_share_dbeaver-ce_.desktop
+application/json=vim.desktop
+video/quicktime=mpv.desktop
+
+[Added Associations]
+image/png=okularApplication_kimgio.desktop;
