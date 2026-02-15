@@ -15,7 +15,6 @@ export WM="i3wm"
 export GPG_TTY=$(tty)
 
 export OPENSSL_CONF=/dev/null
-export XDG_CONFIG_HOME=/home/daniel/.config
 
 source ~/.config/nnn/config.zsh
 source ~/.aliases
@@ -49,9 +48,6 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 
 export __NV_PRIME_RENDER_OFFLOAD=1
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
-
-# Created by `pipx` on 2026-02-09 14:38:05
-export PATH="$PATH:/home/daniel/.local/bin"
 
 r1() {
   export ROS_DISTRO="noetic"  
