@@ -1,0 +1,7 @@
+display ("OLA!")
+
+octave_core_file_name ("$HOME/.config/octave/octave-workspace")
+
+function man (name)
+  help (char (name))
+endfunction
