@@ -1,0 +1,16 @@
+.dotfiles
+*.log
+*.sqlite
+*log.txt
+*lastrun
+*.swp
+
+.repro
+lazy-lock.json
+
+
+
+
+
+
+
