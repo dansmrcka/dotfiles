@@ -13,8 +13,7 @@ return {
   opts = {
     formatters = {
       ros_clang_format = {
-        command = "/home/daniel/git/personal-setup/scripts/ros-lsp.sh",
-        -- 'clang-format' je první argument pro náš wrapper, zbytek jsou parametry pro clang-format
+        command = vim.env.HOME .. "/.scripts/ros-lsp.sh",
         args = { "clang-format", "-assume-filename", "$FILENAME" },
       },
     },

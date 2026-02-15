@@ -8,10 +8,10 @@ alias bt='colcon build --packages-select $(basename `pwd`)'
 alias dk='docker update --restart=no $(docker ps -a -q) && docker kill $(docker ps -q)'
 alias dr='docker system prune -a --volumes'
 alias ul='ln -sf ~/git/programs/*.AppImage ~/.local/bin'
-alias cds="cd /home/daniel/git/personal-setup"
+alias cds="cd $HOME/git/personal-setup"
 alias sp="source .venv/bin/activate"
-alias mrs1="cd /home/daniel/git/f4f/mrs_apptainer-ros1; ./wrapper.sh"
-alias mrs2="cd /home/daniel/git/f4f/mrs_apptainer-ros2; ./wrapper.sh"
+alias mrs1="cd $HOME/git/f4f/mrs_apptainer-ros1; ./wrapper.sh"
+alias mrs2="cd $HOME/git/f4f/mrs_apptainer-ros2; ./wrapper.sh"
 
 alias sb="source ~/.zshrc"
 alias gs="git status"

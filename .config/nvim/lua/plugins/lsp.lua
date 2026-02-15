@@ -5,7 +5,7 @@ return {
       clangd = {
         -- Cesta k tvému wrapperu
         mason = false,
-        cmd = { "/home/daniel/git/personal-setup/scripts/ros-lsp.sh", "clangd", "--background-index" },
+        cmd = { vim.env.HOME .. "/.scripts/ros-lsp.sh", "clangd", "--background-index" },
       },
     },
   },
