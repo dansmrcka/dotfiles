@@ -11,9 +11,10 @@ return {
   },
   "stevearc/conform.nvim",
   opts = {
+    format_on_save = false,
     formatters = {
       ros_clang_format = {
-        command = vim.env.HOME .. "/.scripts/ros-lsp.sh",
+        command = vim.env.HOME .. "/.2scripts/ros-lsp.sh",
         args = { "clang-format", "-assume-filename", "$FILENAME" },
       },
     },

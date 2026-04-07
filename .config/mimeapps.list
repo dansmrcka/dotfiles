@@ -1,22 +1,29 @@
+[Added Associations]
+image/avif=imv.desktop;
+image/bmp=imv.desktop;
+image/heif=imv.desktop;
+image/jpeg=imv.desktop;
+image/png=imv.desktop;okularApplication_kimgio.desktop;
+
 [Default Applications]
+application/json=vim.desktop
+application/pdf=org.pwmt.zathura.desktop
+image/avif=imv.desktop;
+image/bmp=imv.desktop;
+image/heif=imv.desktop;
+image/jpeg=imv.desktop;
+image/png=imv.desktop;
 text/html=brave-browser.desktop
+text/markdown=vim.desktop
+text/plain=vim.desktop
+video/matroska=mpv.desktop
+video/mp4=mpv.desktop
+video/quicktime=mpv.desktop
+video/x-matroska=mpv.desktop
+video/x-msvideo=mpv.desktop
+x-scheme-handler/about=brave-browser.desktop
+x-scheme-handler/eclipse+command=_usr_share_dbeaver-ce_.desktop
 x-scheme-handler/http=brave-browser.desktop
 x-scheme-handler/https=brave-browser.desktop
-x-scheme-handler/about=brave-browser.desktop
-x-scheme-handler/unknown=brave-browser.desktop
 x-scheme-handler/msteams=teams.desktop
-image/jpeg=vimiv.desktop
-image/png=vimiv.desktop
-text/plain=vim.desktop
-text/markdown=vim.desktop
-video/x-msvideo=mpv.desktop
-video/mp4=mpv.desktop
-video/matroska=mpv.desktop
-video/x-matroska=mpv.desktop
-application/pdf=org.pwmt.zathura.desktop
-x-scheme-handler/eclipse+command=_usr_share_dbeaver-ce_.desktop
-application/json=vim.desktop
-video/quicktime=mpv.desktop
-
-[Added Associations]
-image/png=okularApplication_kimgio.desktop;
+x-scheme-handler/unknown=brave-browser.desktop

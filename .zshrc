@@ -5,13 +5,13 @@ export EDITOR=nvim
 export VISUAL=nvim
 export READER="zathura"
 export TERM=rxvt-unicode-256color
+export TERMINAL="kitty"
 export BROWSER="firefox"
-export VIDEO="mpv"
-export IMAGE="vimiv"
+export VIDEO="cvlc"
+export IMAGE="imv"
 export COLORTERM="truecolor"
 export OPENER="xdg-open"
 export PAGER="less"
-export WM="i3wm"
 export GPG_TTY=$(tty)
 
 export OPENSSL_CONF=/dev/null
