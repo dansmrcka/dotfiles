@@ -1,0 +1,12 @@
+[input]
+# Pozice zadávacího řádku (bottom = dole)
+origin = "bottom"
+
+# Odsazení (0 znamená úplně dole na liště)
+offset = { x = 0, y = 0 }
+
+# Šířka (kolik procent šířky terminálu zabere)
+width = 50
+
+# Ohraničení (none = splyne s lištou jako ve Vimu)
+border = "none"
