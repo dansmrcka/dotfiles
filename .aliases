@@ -18,3 +18,5 @@ alias gs="git status"
 alias :q="exit"
 alias vim="nvim"
 alias gitdf='git --git-dir=$DOTFILES --work-tree=$HOME'
+alias gemini='llm -m gemini-2.5-flash'
+alias gemini-chat='llm chat -m gemini-2.5-flash'

@@ -7,21 +7,29 @@ font_size        11.0
 
 # --- Okno ---
 # Alacritty 'decorations = "none"'
-hide_window_decorations yes
+hide_window_decorations false
 # Alacritty 'startup_mode = "Maximized"'
 initial_window_width  100c
 initial_window_height 40c
 # Alacritty 'padding'
 window_padding_width 10
+background_opacity 0.9
 
 # --- Scrollování ---
 scrollback_lines 10000
 touch_scroll_multiplier 3.0
 
+# --- Fix pro tmux ---
+map ctrl+9 send_text all \x1b[57;5u
+map ctrl+0 send_text all \x1b[48;5u
+
 # --- Obecné ---
 # Alacritty 'live_config_reload' (v Kitty je zapnuto automaticky)
 allow_remote_control yes
 listen_on unix:/tmp/mykitty
+copy_on_select yes
+clipboard_control write-clipboard write-primary
+enable_audio_bell no
 
 # --- Barvy (Solarized Light) ---
 # Protože jsi importoval solarized_light.toml, tady je jeho Kitty verze:
@@ -48,6 +56,8 @@ listen_on unix:/tmp/mykitty
 
 
 # BEGIN_KITTY_THEME
-# Solarized Dark
+# Solarized Light
 include current-theme.conf
 # END_KITTY_THEME
+#
+confirm_os_window_close 0

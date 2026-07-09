@@ -20,6 +20,8 @@ source ~/.config/nnn/config.zsh
 source ~/.aliases
 source ~/git/personal-setup/shell/commons
 export PATH=$PATH:~/.scripts
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --no-ignore --exclude '.git/'"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # path to the git root
 export GIT_PATH=~/git
@@ -46,8 +48,7 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
-export __NV_PRIME_RENDER_OFFLOAD=1
-export __GLX_VENDOR_LIBRARY_NAME=nvidia
+export __NV_PRIME_RENDER_OFFLOAD=1 export __GLX_VENDOR_LIBRARY_NAME=nvidia
 
 r1() {
   export ROS_DISTRO="noetic"  
@@ -57,4 +58,11 @@ r2() {
   export ROS_DISTRO="jazzy"
 }
 
-r1
+r2
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export APPTAINER_TMPDIR=$HOME/.apptainer_tmp
+export APPTAINER_CACHE=$HOME/.apptainer_cache

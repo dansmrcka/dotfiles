@@ -10,3 +10,6 @@ width = 50
 
 # Ohraničení (none = splyne s lištou jako ve Vimu)
 border = "none"
+
+[tasks]
+image_bound      = [ 10000, 10000 ]

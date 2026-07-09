@@ -9,18 +9,28 @@ return {
       max_count = 2,
     },
   },
-  "stevearc/conform.nvim",
-  opts = {
-    format_on_save = false,
-    formatters = {
-      ros_clang_format = {
-        command = vim.env.HOME .. "/.2scripts/ros-lsp.sh",
-        args = { "clang-format", "-assume-filename", "$FILENAME" },
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters = {
+        ros_clang_format = {
+          command = vim.env.HOME .. "/.scripts/ros-lsp.sh",
+          args = { "clang-format", "-assume-filename", "$FILENAME" },
+          stdin = true,
+        },
+      },
+      formatters_by_ft = {
+        cpp = { "ros_clang_format" },
+        c = { "ros_clang_format" },
       },
     },
-    formatters_by_ft = {
-      cpp = { "ros_clang_format" },
-      c = { "ros_clang_format" },
-    },
+  },
+  {
+    "bullets-vim/bullets.vim",
+    ft = { "markdown", "text", "gitcommit" },
+    config = function()
+      vim.g.bullets_enabled_filetypes = { "markdown", "text", "gitcommit" }
+      vim.g.bullets_set_mappings = 1
+    end,
   },
 }

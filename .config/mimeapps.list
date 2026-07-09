@@ -4,6 +4,7 @@ image/bmp=imv.desktop;
 image/heif=imv.desktop;
 image/jpeg=imv.desktop;
 image/png=imv.desktop;okularApplication_kimgio.desktop;
+x-scheme-handler/mailto=userapp-Evolution-XEKRR3.desktop;
 
 [Default Applications]
 application/json=vim.desktop
@@ -27,3 +28,4 @@ x-scheme-handler/http=brave-browser.desktop
 x-scheme-handler/https=brave-browser.desktop
 x-scheme-handler/msteams=teams.desktop
 x-scheme-handler/unknown=brave-browser.desktop
+x-scheme-handler/mailto=userapp-Evolution-XEKRR3.desktop
