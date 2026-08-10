@@ -27,7 +27,8 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export GIT_PATH=~/git
 
 # run Tmux automatically in every normal terminal
-export RUN_TMUX=true
+# vypnout pro jednorázový shell: RUN_TMUX=false kitty
+: ${RUN_TMUX:=true}
 
 if [ -e $HOME/.oh-my-zsh ]; then
   export ZSH=$HOME/.oh-my-zsh
@@ -66,3 +67,9 @@ export NVM_DIR="$HOME/.nvm"
 
 export APPTAINER_TMPDIR=$HOME/.apptainer_tmp
 export APPTAINER_CACHE=$HOME/.apptainer_cache
+
+# Automatické spuštění tmuxu — každý terminál dostane vlastní session
+if [[ -z "$TMUX" && -z "$INTEGRATED_TERMINAL" && -z "$VSCODE_INJECTION" && $- == *i* ]] \
+   && [[ "$RUN_TMUX" == true ]] && command -v tmux >/dev/null; then
+  tmux new-session
+fi
