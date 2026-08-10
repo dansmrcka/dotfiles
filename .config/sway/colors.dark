@@ -1,0 +1,22 @@
+# Tmave schema - prevzato z puvodniho i3 configu (COLORSCHEME_DARK).
+# Aktivuje se symlinkem ~/.config/sway/colors -> colors.dark (dela set-theme.sh).
+
+set $active_border       #005faf
+set $active_background   #005faf
+set $active_text_color   #ffffff
+set $inactive_background #333333
+set $inactive_text_color #eeeeee
+set $background_color    #121212
+set $split_indicator     #B85335
+set $urgent              #ff0000
+
+#                       border                background            text                  indicator
+client.focused          $active_border        $active_background    $active_text_color    $split_indicator
+client.unfocused        $inactive_background  $inactive_background  $inactive_text_color  $split_indicator
+client.focused_inactive $active_background    $inactive_background  $inactive_text_color  $split_indicator
+client.urgent           $inactive_background  $inactive_background  $inactive_text_color  $urgent
+
+# Tapeta z Plasmy (ScarletTree), tmava varianta - to, co Plasma brala jako "noc".
+# Pozor: cesta patri balicku plasma-workspace-wallpapers, pri jeho odinstalaci
+# pozadi zmizi.
+output * bg /usr/share/wallpapers/ScarletTree/contents/images_dark/5120x2880.png fill

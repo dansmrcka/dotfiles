@@ -1,0 +1,84 @@
+/* Barvy prichazeji ze symlinku colors.css -> colors-dark.css / colors-light.css,
+   ktery prehazuje ~/.scripts/set-theme.sh */
+@import url("colors.css");
+
+* {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 12px;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    background-color: @bg;
+    color: @fg;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    background-color: transparent;
+    color: @fg_dim;
+}
+
+#workspaces button.visible {
+    color: @fg;
+}
+
+#workspaces button.focused {
+    background-color: @accent;
+    color: @accent_fg;
+}
+
+#workspaces button.urgent {
+    background-color: @critical;
+    color: @accent_fg;
+}
+
+#mode {
+    background-color: @warning;
+    color: @accent_fg;
+    padding: 0 10px;
+}
+
+#window {
+    color: @fg_dim;
+}
+
+#custom-gpu,
+#cpu,
+#memory,
+#temperature,
+#disk,
+#network,
+#pulseaudio,
+#backlight,
+#language,
+#battery,
+#clock,
+#tray {
+    padding: 0 10px;
+    color: @fg;
+}
+
+#clock {
+    background-color: @accent;
+    color: @accent_fg;
+}
+
+#temperature.critical,
+#battery.critical {
+    color: @critical;
+}
+
+#battery.warning {
+    color: @warning;
+}
+
+#network.disconnected {
+    color: @critical;
+}
+
+#pulseaudio.muted {
+    color: @fg_dim;
+}

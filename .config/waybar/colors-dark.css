@@ -1,0 +1,9 @@
+/* Tmave schema - ladi s ~/.config/sway/colors.dark */
+@define-color bg        #121212;
+@define-color bg_alt    #333333;
+@define-color fg        #eeeeee;
+@define-color fg_dim    #888888;
+@define-color accent    #005faf;
+@define-color accent_fg #ffffff;
+@define-color warning   #B85335;
+@define-color critical  #ff0000;

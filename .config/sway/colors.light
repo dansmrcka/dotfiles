@@ -1,0 +1,22 @@
+# Svetle schema - prevzato z puvodniho i3 configu (COLORSCHEME_LIGHT).
+# Aktivuje se symlinkem ~/.config/sway/colors -> colors.light (dela set-theme.sh).
+
+set $active_border       #aaaaaa
+set $active_background   #888888
+set $active_text_color   #1d2021
+set $inactive_background #dddddd
+set $inactive_text_color #1d2021
+set $background_color    #ffffff
+set $split_indicator     #aaaaaa
+set $urgent              #ff0000
+
+#                       border                background            text                  indicator
+client.focused          $active_border        $active_background    $active_text_color    $split_indicator
+client.unfocused        $inactive_background  $inactive_background  $inactive_text_color  $split_indicator
+client.focused_inactive $active_background    $inactive_background  $inactive_text_color  $split_indicator
+client.urgent           $inactive_background  $inactive_background  $inactive_text_color  $urgent
+
+# Tapeta z Plasmy (ScarletTree), svetla varianta - to, co Plasma brala jako "den".
+# Pozor: cesta patri balicku plasma-workspace-wallpapers, pri jeho odinstalaci
+# pozadi zmizi.
+output * bg /usr/share/wallpapers/ScarletTree/contents/images/5120x2880.png fill

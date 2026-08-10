@@ -8,6 +8,13 @@
 .repro
 lazy-lock.json
 
+# Symlinky s aktivnim tematem - prehazuje je .scripts/set-theme.sh, do gitu nepatri
+.config/sway/colors
+.config/waybar/colors.css
+
+# Casovane zalohy configu, ktere si delam pri vetsich zmenach
+*.bak-*
+
 
 
 

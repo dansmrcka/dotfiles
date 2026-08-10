@@ -1,0 +1,9 @@
+/* Svetle schema - ladi s ~/.config/sway/colors.light */
+@define-color bg        #ffffff;
+@define-color bg_alt    #dddddd;
+@define-color fg        #1d2021;
+@define-color fg_dim    #666666;
+@define-color accent    #888888;
+@define-color accent_fg #1d2021;
+@define-color warning   #B85335;
+@define-color critical  #ff0000;

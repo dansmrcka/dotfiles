@@ -1,0 +1,132 @@
+// Waybar - nahrazuje i3blocks setup z i3 configu.
+// Vetsina byvalych skriptu je tady vestavenym modulem; vlastni zustal jen GPU.
+{
+    "layer": "top",
+    "position": "top",
+    "height": 28,
+    "spacing": 4,
+
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["sway/window"],
+    "modules-right": [
+        "custom/gpu",
+        "cpu",
+        "memory",
+        "temperature",
+        "disk",
+        "network",
+        "pulseaudio",
+        "backlight",
+        "sway/language",
+        "battery",
+        "tray",
+        "clock"
+    ],
+
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "format": "{name}"
+    },
+
+    "sway/mode": {
+        // ukaze resize_mode / mouse_mode / gaps_mode
+        "format": "<span style=\"italic\">{}</span>"
+    },
+
+    "sway/window": {
+        "max-length": 60,
+        "tooltip": false
+    },
+
+    "sway/language": {
+        // nahrazuje show_keyboard_layout.sh (stal na X11 xkblayout-state)
+        "format": "󰌌  {short}",
+        "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
+    },
+
+    "cpu": {
+        // ekvivalent byvaleho [load] bloku
+        "interval": 5,
+        "format": "󰘚  {load}",
+        "tooltip": true
+    },
+
+    "memory": {
+        "interval": 10,
+        "format": "󰍛  {percentage}%",
+        "tooltip-format": "{used:0.1f}G / {total:0.1f}G"
+    },
+
+    "temperature": {
+        "interval": 10,
+        "critical-threshold": 85,
+        "format": "󰸁  {temperatureC}°C",
+        "format-critical": "󰸁  {temperatureC}°C"
+    },
+
+    "disk": {
+        "interval": 30,
+        "path": "/",
+        "format": "󰋊  {percentage_used}%",
+        "tooltip-format": "{used} / {total} na {path}"
+    },
+
+    "network": {
+        // pokryva byvale [iface], [wifi], [bandwidth] i [online-status]
+        "interval": 5,
+        "format-wifi": "󰖩  {essid} {signalStrength}%",
+        "format-ethernet": "󰈀  {ifname}",
+        "format-linked": "󰠙  bez IP",
+        "format-disconnected": "󰖪  odpojeno",
+        "tooltip-format": "{ifname}  {ipaddr}\n {bandwidthDownBits}   {bandwidthUpBits}",
+        "on-click": "nm-connection-editor"
+    },
+
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-muted": "󰖁  ztlumeno",
+        "format-icons": {
+            "headphone": "󰋋",
+            "headset": "󰋌",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click": "pavucontrol",
+        "scroll-step": 5
+    },
+
+    "backlight": {
+        "format": "󰃝  {percent}%",
+        "on-scroll-up": "brightnessctl set 5%+",
+        "on-scroll-down": "brightnessctl set 5%-"
+    },
+
+    "battery": {
+        "interval": 30,
+        "states": { "warning": 30, "critical": 15 },
+        "format": "{icon}  {capacity}%",
+        "format-charging": "󰂄  {capacity}%",
+        "format-plugged": "󰚥  {capacity}%",
+        "format-icons": ["󰂎", "󰁺", "󰁽", "󰂀", "󰁹"],
+        "tooltip-format": "{timeTo}  ({power}W)"
+    },
+
+    "custom/gpu": {
+        // jediny zbyly vlastni skript; sam se vypne, kdyz NVIDIA spi (setri baterii)
+        "exec": "~/.config/waybar/scripts/gpu.sh",
+        "return-type": "json",
+        "interval": 10,
+        "tooltip": true
+    },
+
+    "tray": {
+        // sem se vejde nm-applet i blueman-applet
+        "icon-size": 16,
+        "spacing": 8
+    },
+
+    "clock": {
+        "interval": 1,
+        "format": "󰥔  {:%d/%m/%Y %H:%M:%S}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    }
+}
