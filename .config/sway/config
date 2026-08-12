@@ -28,7 +28,12 @@ include ~/.config/sway/colors
 
 input type:keyboard {
     xkb_layout "us,cz"
-    xkb_options "grp:alt_caps_toggle"
+    # cz(qwerty) - shoda s puvodnim KDE nastavenim (~/.config/kxkbrc VariantList=,qwerty)
+    xkb_variant ",qwerty"
+    # zadny grp: option zamerne - xkb toggle prepina layout jen na zarizeni,
+    # ktere dostalo stisk, takze se ostatni klavesnice (dok, BT sluchatka
+    # hlasici se jako keyboard) rozejdou a waybar pak ukazuje nesmysl.
+    # Prepina se pres bindsym nize, ktery to posle na vsechny naraz.
 }
 
 input type:touchpad {
@@ -151,13 +156,22 @@ bindsym $mod2+c exec $scripts/set-theme.sh
 bindsym $mod2+f exec $scripts/system_menu.sh
 bindsym $mod+Shift+x exec $scripts/system_menu.sh
 
-# screenshot vyrezu do schranky
-bindsym Print exec grim -g "$(slurp)" - | wl-copy
+# screenshot vyrezu do souboru + schranky
+bindsym Print exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/Screenshot_$(date +%Y%m%d_%H%M%S).png | wl-copy
 # cela obrazovka do ~/Pictures
-bindsym Shift+Print exec grim ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png
+bindsym Shift+Print exec grim ~/Pictures/Screenshots/Screenshot_$(date +%Y%m%d_%H%M%S).png
 
 # historie schranky
 bindsym $mod2+v exec cliphist list | $scripts/menu.sh --dmenu 'clip:' | cliphist decode | wl-copy
+
+# prepnuti jazyka klavesnice - v Plasme to bylo Meta+Space
+# (~/.config/kglobalshortcutsrc, "Switch to Next Keyboard Layout").
+# "type:keyboard" plati na vsechna zarizeni, takze zustanou v sync.
+bindsym $mod2+space exec swaymsg input type:keyboard xkb_switch_layout next
+
+# vyber zvukoveho vystupu / vstupu
+bindsym $mod2+s exec $scripts/audio_menu.sh
+bindsym $mod2+Shift+s exec $scripts/audio_menu.sh --input
 
 # F1 uz nespousti napovedu programu
 bindsym F1 exec --no-startup-id true
@@ -202,6 +216,12 @@ bindsym --locked XF86AudioPlay exec playerctl play-pause
 bindsym --locked XF86AudioPause exec playerctl play-pause
 bindsym --locked XF86AudioNext exec playerctl next
 bindsym --locked XF86AudioPrev exec playerctl previous
+
+# Alt+F9/F10/F11 - stejne jako XF86Audio* vyse, jen bez fyzickych
+# multimedialnich klaves na teto klavesnici (puvodne z Plasmy)
+bindsym --locked $mod+F9  exec playerctl previous
+bindsym --locked $mod+F10 exec playerctl play-pause
+bindsym --locked $mod+F11 exec playerctl next
 
 ### rezimy ###
 
@@ -345,6 +365,7 @@ for_window [app_id="^blueman-manager$"] floating enable
 
 exec waybar
 exec mako
+exec ~/.scripts/media_notify.sh
 exec kanshi
 exec nm-applet --indicator
 exec blueman-applet
