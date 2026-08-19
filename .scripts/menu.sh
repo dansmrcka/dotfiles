@@ -18,7 +18,7 @@
 set -u
 
 COLORS=~/.config/sway/colors
-FONT='Monospace 12'
+FONT='Monospace 10'
 
 # Vytahne "set $nazev #rrggbb" ze sway barevneho schematu. wmenu chce hex
 # bez mrizky, sway ji ma - proto se ustrihne.

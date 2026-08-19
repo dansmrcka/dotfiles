@@ -1,10 +1,11 @@
 // Waybar - nahrazuje i3blocks setup z i3 configu.
-// Vetsina byvalych skriptu je tady vestavenym modulem; vlastni zustal jen GPU.
+// Vetsina byvalych skriptu je tady vestavenym modulem; vlastni zustaly jen
+// GPU, jazyk klavesnice a napajeci profil.
 {
     "layer": "top",
     "position": "top",
-    "height": 28,
-    "spacing": 4,
+    "height": 22,
+    "spacing": 2,
 
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
@@ -17,7 +18,8 @@
         "network",
         "pulseaudio",
         "backlight",
-        "sway/language",
+        "custom/language",
+        "custom/powerprofile",
         "battery",
         "tray",
         "clock"
@@ -38,9 +40,21 @@
         "tooltip": false
     },
 
-    "sway/language": {
-        // nahrazuje show_keyboard_layout.sh (stal na X11 xkblayout-state)
-        "format": "󰌌  {short}",
+    "custom/language": {
+        // Nahrazuje vestaveny "sway/language", ktery tu obcas misto jazyka
+        // ukazoval prazdno. Duvod je v jeho zdrojaku (src/modules/sway/language.cpp):
+        // set_current_layout() dela layouts_map_[jmeno], tedy std::map::operator[],
+        // ktery pro neznamy klic tise vrati prazdny Layout. Mapa se navic plni
+        // jen jednou pri startu, kdezto reaguje se na kazdou "input" udalost
+        // z libovolneho zarizeni typu keyboard - a tech je tu 12 (Soundcore
+        // AVRCP, Power/Sleep Button, Video Bus, HOLTEK dock...), pricemz se
+        // za behu pridavaji a odebiraji. Volba keyboard-name je jen pro
+        // hyprland/language, sway varianta ji nezna.
+        //
+        // Skript se misto toho ptá primo swaymsg a nikdy nevrati nic jineho
+        // nez us/cz.
+        "exec": "~/.config/waybar/scripts/language.sh",
+        "return-type": "json",
         "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
     },
 
@@ -90,7 +104,10 @@
             "headset": "󰋌",
             "default": ["󰕿", "󰖀", "󰕾"]
         },
+        // levy klik = plny mixer, pravy klik = rychla volba vystupu (stejne
+        // menu jako $mod2+s v sway)
         "on-click": "pavucontrol",
+        "on-click-right": "~/.scripts/audio_menu.sh",
         "scroll-step": 5
     },
 
@@ -111,17 +128,28 @@
     },
 
     "custom/gpu": {
-        // jediny zbyly vlastni skript; sam se vypne, kdyz NVIDIA spi (setri baterii)
+        // sam se vypne, kdyz NVIDIA spi (setri baterii)
         "exec": "~/.config/waybar/scripts/gpu.sh",
         "return-type": "json",
         "interval": 10,
         "tooltip": true
     },
 
+    "custom/powerprofile": {
+        // Nahrazuje PowerDevil z Plasmy - ve sway napajeci profil nikdo nespravuje
+        // a umi tise uviznout v powersave (vypnute turbo, CPU strop 1,4 GHz).
+        // signal 8 = pkill -RTMIN+8 waybar, aby se po kliku prekreslilo hned.
+        "exec": "~/.config/waybar/scripts/powerprofile.sh",
+        "return-type": "json",
+        "interval": 10,
+        "signal": 8,
+        "on-click": "~/.config/waybar/scripts/powerprofile.sh set"
+    },
+
     "tray": {
         // sem se vejde nm-applet i blueman-applet
-        "icon-size": 16,
-        "spacing": 8
+        "icon-size": 14,
+        "spacing": 6
     },
 
     "clock": {

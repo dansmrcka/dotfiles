@@ -4,19 +4,20 @@
 
 * {
     font-family: "JetBrainsMono Nerd Font", monospace;
-    font-size: 12px;
+    font-size: 11px;
     min-height: 0;
     border: none;
     border-radius: 0;
 }
 
 window#waybar {
-    background-color: @bg;
+    /* alpha() je GTK3 CSS funkce - nasobi alfu, takze funguje pro obe schemata */
+    background-color: alpha(@bg, 0.75);
     color: @fg;
 }
 
 #workspaces button {
-    padding: 0 8px;
+    padding: 0 6px;
     background-color: transparent;
     color: @fg_dim;
 }
@@ -38,7 +39,7 @@ window#waybar {
 #mode {
     background-color: @warning;
     color: @accent_fg;
-    padding: 0 10px;
+    padding: 0 8px;
 }
 
 #window {
@@ -53,11 +54,12 @@ window#waybar {
 #network,
 #pulseaudio,
 #backlight,
-#language,
+#custom-language,
+#custom-powerprofile,
 #battery,
 #clock,
 #tray {
-    padding: 0 10px;
+    padding: 0 8px;
     color: @fg;
 }
 
@@ -67,8 +69,21 @@ window#waybar {
 }
 
 #temperature.critical,
-#battery.critical {
+#battery.critical,
+#custom-powerprofile.error {
     color: @critical;
+}
+
+/* powersave nema jak poznat, ze skodi, dokud clovek nemeri - proto ho barvime
+   jako varovani. Performance dostava stejne zvyrazneni jako #clock, aby bylo
+   videt, ze nejde o vychozi stav. */
+#custom-powerprofile.power-saver {
+    color: @warning;
+}
+
+#custom-powerprofile.performance {
+    background-color: @accent;
+    color: @accent_fg;
 }
 
 #battery.warning {
