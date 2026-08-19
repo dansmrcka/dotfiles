@@ -156,6 +156,9 @@ bindsym $mod2+c exec $scripts/set-theme.sh
 bindsym $mod2+f exec $scripts/system_menu.sh
 bindsym $mod+Shift+x exec $scripts/system_menu.sh
 
+# zamknuti obrazovky - Win+L jako ve Windows
+bindsym $mod2+l exec swaylock -f -c 2ECC71
+
 # screenshot vyrezu do souboru + schranky
 bindsym Print exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/Screenshot_$(date +%Y%m%d_%H%M%S).png | wl-copy
 # cela obrazovka do ~/Pictures
@@ -167,7 +170,7 @@ bindsym $mod2+v exec cliphist list | $scripts/menu.sh --dmenu 'clip:' | cliphist
 # prepnuti jazyka klavesnice - v Plasme to bylo Meta+Space
 # (~/.config/kglobalshortcutsrc, "Switch to Next Keyboard Layout").
 # "type:keyboard" plati na vsechna zarizeni, takze zustanou v sync.
-bindsym $mod2+space exec swaymsg input type:keyboard xkb_switch_layout next
+bindsym $mod2+space exec swaymsg input type:keyboard xkb_switch_layout next && $scripts/osd-layout.sh
 
 # vyber zvukoveho vystupu / vstupu
 bindsym $mod2+s exec $scripts/audio_menu.sh
@@ -183,34 +186,34 @@ bindsym F1 exec --no-startup-id true
 # -n 1 u ztlumeni jasu: "set 7%-" umi dojet na nulu a uplne zhasnout panel.
 # brightnessctl pise pres logind SetBrightness, takze root ani skupina video netreba.
 
-bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
-bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-bindsym --locked XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+ && $scripts/osd-volume.sh sink
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && $scripts/osd-volume.sh sink
+bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && $scripts/osd-volume.sh sink
+bindsym --locked XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && $scripts/osd-volume.sh source
 
 # jemne kroky po 1 % - v Plasme to bylo increase_volume_small / decrease_volume_small
-bindsym --locked Shift+XF86AudioRaiseVolume exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 1%+
-bindsym --locked Shift+XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-
+bindsym --locked Shift+XF86AudioRaiseVolume exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 1%+ && $scripts/osd-volume.sh sink
+bindsym --locked Shift+XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%- && $scripts/osd-volume.sh sink
 
 # mic mute na Meta - v Plasme mic_mute = Meta+Volume Mute
-bindsym --locked $mod2+XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym --locked $mod2+XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && $scripts/osd-volume.sh source
 
-bindsym --locked XF86MonBrightnessUp exec brightnessctl set 7%+
-bindsym --locked XF86MonBrightnessDown exec brightnessctl set 7%- -n 1
-bindsym --locked Shift+XF86MonBrightnessUp exec brightnessctl set 1%+
-bindsym --locked Shift+XF86MonBrightnessDown exec brightnessctl set 1%- -n 1
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 7%+ && $scripts/osd-brightness.sh screen
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 7%- -n 1 && $scripts/osd-brightness.sh screen
+bindsym --locked Shift+XF86MonBrightnessUp exec brightnessctl set 1%+ && $scripts/osd-brightness.sh screen
+bindsym --locked Shift+XF86MonBrightnessDown exec brightnessctl set 1%- -n 1 && $scripts/osd-brightness.sh screen
 
 # podsviceni klavesnice (ThinkPad, rozsah 0-2)
-bindsym --locked XF86KbdBrightnessUp exec brightnessctl -d 'tpacpi::kbd_backlight' set +1
-bindsym --locked XF86KbdBrightnessDown exec brightnessctl -d 'tpacpi::kbd_backlight' set 1-
+bindsym --locked XF86KbdBrightnessUp exec brightnessctl -d 'tpacpi::kbd_backlight' set +1 && $scripts/osd-brightness.sh kbd
+bindsym --locked XF86KbdBrightnessDown exec brightnessctl -d 'tpacpi::kbd_backlight' set 1- && $scripts/osd-brightness.sh kbd
 
 # kombinace prenesene z Plasmy (~/.config/kglobalshortcutsrc); $mod je Mod1 = Alt,
 # takze Alt+F1/F2/F3 a Alt+F5/F6 sedi 1:1 na to, co jsi mel pod KDE
-bindsym --locked $mod+F1 exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-bindsym --locked $mod+F2 exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-bindsym --locked $mod+F3 exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
-bindsym --locked $mod+F5 exec brightnessctl set 7%- -n 1
-bindsym --locked $mod+F6 exec brightnessctl set 7%+
+bindsym --locked $mod+F1 exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && $scripts/osd-volume.sh sink
+bindsym --locked $mod+F2 exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && $scripts/osd-volume.sh sink
+bindsym --locked $mod+F3 exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+ && $scripts/osd-volume.sh sink
+bindsym --locked $mod+F5 exec brightnessctl set 7%- -n 1 && $scripts/osd-brightness.sh screen
+bindsym --locked $mod+F6 exec brightnessctl set 7%+ && $scripts/osd-brightness.sh screen
 
 bindsym --locked XF86AudioPlay exec playerctl play-pause
 bindsym --locked XF86AudioPause exec playerctl play-pause
@@ -353,7 +356,7 @@ for_window [title="pythonplot"] floating disable
 
 # mail ma svou vlastni plochu - Betterbird startuje z ~/.config/autostart,
 # takze se tam odklidi sam a nevlezne do cesty na plose, kde zrovna delas.
-assign [app_id="^eu\.betterbird\.Betterbird$"] workspace number 9
+assign [class="^eu\.betterbird\.Betterbird$"] workspace number 9
 
 # ovladaci dialogy at plavou
 for_window [window_role="pop-up|bubble|dialog"] floating enable
@@ -373,7 +376,7 @@ exec /usr/libexec/kf6/polkit-kde-authentication-agent-1
 exec wl-paste --watch cliphist store
 
 # na jednom radku zamerne - vyhybame se pokracovani radku v sway configu
-exec swayidle -w timeout 300 'swaylock -f -c 000000' timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' before-sleep 'swaylock -f -c 000000'
+exec swayidle -w timeout 300 'swaylock -f -c 2ECC71' timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' before-sleep 'swaylock -f -c 2ECC71'
 
 # zpracovani ~/.config/autostart (Betterbird, Syncthing).
 # Ceka na tray, proto az za "exec waybar" - waybar tray je jeho implementace.
