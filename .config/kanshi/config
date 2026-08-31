@@ -1,0 +1,35 @@
+# Kanshi - nahrazuje daniel_set_monitor.sh, ~/.monitor.sh a arandr skripty.
+# Profil se vybere sam podle toho, ktere vystupy jsou pripojene.
+#
+# Jmena a rezimy vystupu zjistis pres:  swaymsg -t get_outputs
+# Rucni doladeni:                       wdisplays
+
+profile standalone {
+    output eDP-1 mode 1920x1200 position 0,0 scale 1
+}
+
+profile docked_hdmi {
+    output eDP-1 mode 1920x1200 position 0,0 scale 1
+    output HDMI-A-1 enable position 1920,0
+}
+
+profile docked_dp {
+    output eDP-1 mode 1920x1200 position 0,0 scale 1
+    output DP-1 enable position 1920,0
+}
+
+# Dock se dvema externimi DP monitory (MSI 4K + Dell FHD).
+# Fyzicke rozlozeni zleva doprava: Dell (DP-5) - MSI 4K (DP-6) - laptop (eDP-1).
+profile docked_dual_dp {
+    output DP-5 mode 1920x1080 position 0,0 scale 1
+    output DP-6 mode 3840x2160 position 1920,0 scale 1
+    output eDP-1 mode 1920x1200 position 5760,0 scale 1
+}
+
+# Priklad: prezentace - klonovani na projektor.
+# Odkomentuj a uprav podle skutecneho jmena vystupu.
+#
+# profile presentation {
+#     output eDP-1 mode 1920x1200 position 0,0 scale 1
+#     output HDMI-A-1 mode 1920x1080 position 0,0
+# }
