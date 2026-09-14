@@ -370,6 +370,10 @@ exec waybar
 exec mako
 exec ~/.scripts/media_notify.sh
 exec kanshi
+# `swaymsg reload` (dela ho i set-theme.sh) vrati vystupy na vychozi rozlozeni
+# sway a kanshi o tom nevi - zadny monitor se nepripojil. Profil se proto po
+# kazdem reloadu aplikuje znovu. Pri startu to selze potichu (kanshi jeste nebezi).
+exec_always kanshictl reload
 exec nm-applet --indicator
 exec blueman-applet
 exec /usr/libexec/kf6/polkit-kde-authentication-agent-1
