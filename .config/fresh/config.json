@@ -1,0 +1,83 @@
+{
+  "check_for_updates": false,
+  "editor": {
+    "show_horizontal_scrollbar": true,
+    "show_vertical_scrollbar": false
+  },
+  "version": 2,
+  "lsp": {
+    "cpp": {
+      "enabled": true,
+      "auto_start": true,
+      "process_limits": {
+        "max_memory_percent": 50,
+        "max_cpu_percent": 90,
+        "enabled": true
+      }
+    }
+  },
+  "plugins": {
+    "welcome_screen": {
+      "enabled": true,
+      "settings": {
+        "showOnStartup": false
+      }
+    },
+    "vi_mode": {
+      "enabled": true,
+      "settings": {
+        "autoStart": true
+      }
+    },
+    "orchestrator": {
+      "settings": {
+        "autoOpenDock": "never"
+      }
+    }
+  },
+  "orchestrator_mode": false,
+  "keybindings": [
+    { "key": "o", "modifiers": ["alt"], "action": "orchestrator_dock_toggle", "when": "normal" },
+    { "key": "o", "modifiers": ["alt"], "action": "orchestrator_dock_toggle", "when": "fileExplorer" },
+    { "key": "o", "modifiers": ["alt"], "action": "orchestrator_dock_toggle", "when": "compositeBuffer" },
+    { "key": "o", "modifiers": ["alt"], "action": "orchestrator_dock_toggle", "when": "dock" },
+    { "key": "p", "modifiers": ["alt"], "action": "orchestrator_open", "when": "normal" },
+    { "key": "p", "modifiers": ["alt"], "action": "orchestrator_open", "when": "fileExplorer" },
+    { "key": "v", "modifiers": ["ctrl"], "action": "unbind", "when": "terminal" },
+    { "key": "o", "modifiers": ["alt"], "action": "unbind", "when": "terminal" },
+    { "key": "p", "modifiers": ["alt"], "action": "unbind", "when": "terminal" },
+    { "key": "p", "modifiers": ["ctrl"], "action": "unbind", "when": "terminal" },
+    { "key": "F2", "modifiers": [], "action": "orchestrator_dock_toggle", "when": "normal" },
+    { "key": "F2", "modifiers": [], "action": "orchestrator_dock_toggle", "when": "fileExplorer" },
+    { "key": "F2", "modifiers": [], "action": "orchestrator_dock_toggle", "when": "terminal" },
+    { "key": "F2", "modifiers": [], "action": "orchestrator_dock_toggle", "when": "compositeBuffer" },
+    { "key": "F2", "modifiers": [], "action": "orchestrator_dock_toggle", "when": "dock" },
+    { "key": "F3", "modifiers": [], "action": "next_split", "when": "normal" },
+    { "key": "F3", "modifiers": [], "action": "next_split", "when": "fileExplorer" },
+    { "key": "F3", "modifiers": [], "action": "next_split", "when": "terminal" },
+    { "key": "F3", "modifiers": [], "action": "next_split", "when": "compositeBuffer" },
+    { "key": "o", "modifiers": ["alt"], "action": "orchestrator_dock_toggle", "when": "global" },
+    { "key": "p", "modifiers": ["alt"], "action": "orchestrator_open", "when": "global" },
+    { "key": "F2", "modifiers": [], "action": "orchestrator_dock_toggle", "when": "global" },
+    { "key": "F3", "modifiers": [], "action": "next_split", "when": "global" },
+    { "key": "[", "modifiers": ["alt"], "action": "prev_split", "when": "global" },
+    { "key": "]", "modifiers": ["alt"], "action": "next_split", "when": "global" },
+    { "key": "i", "modifiers": ["alt"], "action": "focus_editor", "when": "fileExplorer" },
+    { "key": "i", "modifiers": ["alt"], "action": "focus_file_explorer", "when": "global" },
+    { "key": "g", "modifiers": ["alt"], "action": "toggle_dock_focus", "when": "global" },
+    { "keys": [{ "key": ",", "modifiers": [] }, { "key": "n", "modifiers": [] }], "action": "toggle_file_explorer", "when": "mode:vi-normal" },
+    { "key": ":", "modifiers": [], "action": "ex_prompt", "when": "mode:vi-normal" },
+    { "keys": [{ "key": "w", "modifiers": ["ctrl"] }, { "key": "h", "modifiers": [] }], "action": "win_focus_left", "when": "mode:vi-normal" },
+    { "keys": [{ "key": "w", "modifiers": ["ctrl"] }, { "key": "j", "modifiers": [] }], "action": "win_focus_down", "when": "mode:vi-normal" },
+    { "keys": [{ "key": "w", "modifiers": ["ctrl"] }, { "key": "k", "modifiers": [] }], "action": "win_focus_up", "when": "mode:vi-normal" },
+    { "keys": [{ "key": "w", "modifiers": ["ctrl"] }, { "key": "l", "modifiers": [] }], "action": "win_focus_right", "when": "mode:vi-normal" },
+    { "keys": [{ "key": "w", "modifiers": ["ctrl"] }, { "key": "w", "modifiers": [] }], "action": "next_split", "when": "mode:vi-normal" },
+    { "keys": [{ "key": "g", "modifiers": [] }, { "key": "T", "modifiers": ["shift"] }], "action": "prev_buffer", "when": "mode:vi-normal" },
+    { "keys": [{ "key": "g", "modifiers": [] }, { "key": "t", "modifiers": [] }], "action": "next_buffer", "when": "mode:vi-normal" },
+    { "key": "h", "modifiers": ["alt"], "action": "win_focus_left", "when": "global" },
+    { "key": "j", "modifiers": ["alt"], "action": "win_focus_down", "when": "global" },
+    { "key": "k", "modifiers": ["alt"], "action": "win_focus_up", "when": "global" },
+    { "key": "l", "modifiers": ["alt"], "action": "win_focus_right", "when": "global" }
+  ],
+  "theme": "builtin://terminal"
+}
