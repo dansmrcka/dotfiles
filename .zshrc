@@ -30,6 +30,7 @@ export GIT_PATH=~/git
 # vypnout pro jednorázový shell: RUN_TMUX=false kitty
 : ${RUN_TMUX:=true}
 
+fpath+=(~/.local/share/zsh/site-functions)
 if [ -e $HOME/.oh-my-zsh ]; then
   export ZSH=$HOME/.oh-my-zsh
   ZSH_THEME="lukerandall"
@@ -78,8 +79,8 @@ export NVM_DIR="$HOME/.nvm"
 export APPTAINER_TMPDIR=$HOME/.apptainer_tmp
 export APPTAINER_CACHE=$HOME/.apptainer_cache
 
-# Automatické spuštění tmuxu — každý terminál dostane vlastní session
-if [[ -z "$TMUX" && -z "$INTEGRATED_TERMINAL" && -z "$VSCODE_INJECTION" && $- == *i* ]] \
-   && [[ "$RUN_TMUX" == true ]] && command -v tmux >/dev/null; then
-  tmux new-session
-fi
+# # Automatické spuštění tmuxu — každý terminál dostane vlastní session
+# if [[ -z "$TMUX" && -z "$INTEGRATED_TERMINAL" && -z "$VSCODE_INJECTION" && $- == *i* ]] \
+#    && [[ "$RUN_TMUX" == true ]] && command -v tmux >/dev/null; then
+#   tmux new-session
+# fi
