@@ -19,11 +19,17 @@ profile docked_dp {
 }
 
 # Dock se dvema externimi DP monitory (MSI 4K + Dell FHD).
-# Fyzicke rozlozeni zleva doprava: Dell (DP-5) - MSI 4K (DP-6) - laptop (eDP-1).
+# Fyzicke rozlozeni zleva doprava: Dell - MSI 4K - laptop (eDP-1).
+#
+# Parovani je zamerne pres identitu "vyrobce model seriovka" (viz
+# `swaymsg -t get_outputs`), ne pres jmeno portu (DP-5/DP-6/...). Jmeno
+# portu se prideluje podle poradi detekce a po odpojeni/pripojeni docku
+# se muze prehazet (uz se stalo vickrat), takze se profil netrefil a
+# kanshi spadlo zpet na "standalone".
 profile docked_dual_dp {
-    output DP-5 mode 1920x1080 position 0,0 scale 1
-    output DP-6 mode 3840x2160 position 1920,0 scale 1
-    output eDP-1 mode 1920x1200 position 5760,0 scale 1
+    output "Dell Inc. DELL P2422H 5QDPFZ3" mode 1920x1080 position 0,0 scale 1
+    output "Microstep MSI MP273U PB4HE65702033" mode 3840x2160 position 1920,0 scale 1.5
+    output eDP-1 mode 1920x1200 position 4480,0 scale 1
 }
 
 # Priklad: prezentace - klonovani na projektor.
