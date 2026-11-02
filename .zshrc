@@ -50,17 +50,6 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
-# dGPU (NVIDIA T550) jen na vyzadani: `prime-run blender`.
-# Driv tu byl bezpodminecny export, ktery na dGPU poslal uplne vsechno spustene
-# z terminalu vcetne prohlizece. Kompozitor pritom bezi na Intelu
-# (WLR_DRM_DEVICES v ~/.config/environment.d/10-wlroots.conf), takze se vysledek
-# musel PRIME kopirovat zpet - pomalejsi start a zbytecne probuzena karta.
-prime-run() {
-  __NV_PRIME_RENDER_OFFLOAD=1 \
-  __GLX_VENDOR_LIBRARY_NAME=nvidia \
-  __VK_LAYER_NV_optimus=NVIDIA_only \
-  "$@"
-}
 
 r1() {
   export ROS_DISTRO="noetic"  

@@ -363,6 +363,7 @@ for_window [window_role="pop-up|bubble|dialog"] floating enable
 for_window [app_id="^pavucontrol$"] floating enable
 for_window [app_id="^wdisplays$"] floating enable
 for_window [app_id="^blueman-manager$"] floating enable
+for_window [app_id="lxqt-policykit-agent"] floating enable, move position center
 
 ### autostart ###
 
@@ -376,7 +377,7 @@ exec kanshi
 exec_always kanshictl reload
 exec nm-applet --indicator
 exec blueman-applet
-exec /usr/libexec/kf6/polkit-kde-authentication-agent-1
+exec /usr/libexec/lxqt-policykit-agent
 exec wl-paste --watch cliphist store
 
 # na jednom radku zamerne - vyhybame se pokracovani radku v sway configu

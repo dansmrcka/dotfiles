@@ -1,30 +1,33 @@
 #!/bin/bash
-# Waybar modul pro NVIDIA T550.
+# Waybar modul pro integrovanou AMD grafiku (ThinkPad T14 Gen 6, Radeon 840M).
 #
-# Nahrazuje show_gpu_load.sh / show_gpu_temp.sh / show_gpu_mem.sh z i3blocks.
+# Vse ze sysfs ovladace amdgpu, bez externich nastroju. iGPU se na rozdil od
+# drivejsi NVIDIA dGPU neuspava a cteni sysfs ji nebudi, takze se ptame vzdy.
 #
-# Dulezite: na Optimus laptopu nvidia-smi probudi uspanou dGPU a zere baterii.
-# Proto se nejdriv ptame sysfs na runtime_status a kdyz GPU spi, mlcime.
+# Karta se hleda podle ovladace, ne podle cisla - card0/card1 se muze
+# mezi jadry/bootem prehodit.
 
-GPU_PCI="0000:03:00.0"
-STATE_FILE="/sys/bus/pci/devices/${GPU_PCI}/power/runtime_status"
+dev=""
+for d in /sys/class/drm/card[0-9]*; do
+    [[ "$(basename "$(readlink -f "$d/device/driver")")" == amdgpu ]] && { dev="$d/device"; break; }
+done
 
-state=$(cat "$STATE_FILE" 2>/dev/null)
-
-if [[ "$state" != "active" ]]; then
-    printf '{"text":"","tooltip":"NVIDIA T550: %s","class":"suspended"}\n' "${state:-neznamy stav}"
+if [[ -z "$dev" || ! -r "$dev/gpu_busy_percent" ]]; then
+    printf '{"text":"","tooltip":"amdgpu nenalezena","class":"error"}\n'
     exit 0
 fi
 
-read -r util mem_used mem_total temp < <(
-    nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total,temperature.gpu \
-               --format=csv,noheader,nounits 2>/dev/null | tr -d ','
-)
+util=$(<"$dev/gpu_busy_percent")
+mib() { echo $(( $(<"$1") / 1048576 )); }
+vram_used=$(mib "$dev/mem_info_vram_used")
+vram_total=$(mib "$dev/mem_info_vram_total")
+gtt_used=$(mib "$dev/mem_info_gtt_used")
 
-if [[ -z "$util" ]]; then
-    printf '{"text":"","tooltip":"nvidia-smi neodpovida","class":"error"}\n'
-    exit 0
-fi
+hw=$(ls -d "$dev"/hwmon/hwmon* 2>/dev/null | head -1)
+temp="?"; power="?"
+[[ -r "$hw/temp1_input" ]] && temp=$(( $(<"$hw/temp1_input") / 1000 ))
+# power1_average je u APU prikon cele baterie cipu (PPT), ne jen grafiky
+[[ -r "$hw/power1_average" ]] && power=$(awk '{printf "%.1f", $1/1e6}' "$hw/power1_average")
 
-printf '{"text":"󰢮 %s%%","tooltip":"NVIDIA T550\\nZatez: %s%%\\nVRAM: %s / %s MiB\\nTeplota: %s°C","class":"active"}\n' \
-    "$util" "$util" "$mem_used" "$mem_total" "$temp"
+printf '{"text":"󰢮 %s%%","tooltip":"Radeon iGPU\\nZatez: %s%%\\nVRAM: %s / %s MiB (+ GTT %s MiB)\\nTeplota: %s°C\\nPrikon APU: %s W","class":"active","percentage":%s}\n' \
+    "$util" "$util" "$vram_used" "$vram_total" "$gtt_used" "$temp" "$power" "$util"

@@ -16,7 +16,5 @@ client.unfocused        $inactive_background  $inactive_background  $inactive_te
 client.focused_inactive $active_background    $inactive_background  $inactive_text_color  $split_indicator
 client.urgent           $inactive_background  $inactive_background  $inactive_text_color  $urgent
 
-# Tapeta z Plasmy (ScarletTree), svetla varianta - to, co Plasma brala jako "den".
-# Pozor: cesta patri balicku plasma-workspace-wallpapers, pri jeho odinstalaci
-# pozadi zmizi.
-output * bg /usr/share/wallpapers/ScarletTree/contents/images/5120x2880.png fill
+# Pozadi je jen plna barva schematu - zadna zavislost na balicku s tapetami.
+output * bg $background_color solid_color

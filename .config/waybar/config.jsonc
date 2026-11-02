@@ -128,7 +128,7 @@
     },
 
     "custom/gpu": {
-        // sam se vypne, kdyz NVIDIA spi (setri baterii)
+        // AMD iGPU - zatez, VRAM, teplota ze sysfs (amdgpu)
         "exec": "~/.config/waybar/scripts/gpu.sh",
         "return-type": "json",
         "interval": 10,

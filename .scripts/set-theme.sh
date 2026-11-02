@@ -5,7 +5,7 @@
 # Zmeny pri prechodu na sway:
 #   - vyhozen "export DISPLAY=:0" (pod Waylandem nic neznamena)
 #   - pribylo prepnuti barev sway, waybaru a pozadi
-#   - GTK aplikace se resi pres gsettings, KDE dal pres lookandfeeltool
+#   - GTK aplikace se resi pres gsettings, KDE dal pres lookandfeeltool (jen kdyz je KDE nainstalovane)
 #
 # DBUS_SESSION_BUS_ADDRESS zustava - gsettings a notifikace ho potrebuji.
 export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
@@ -116,7 +116,7 @@ dark)
   kitty +kitten themes --reload-in=all "Solarized Dark"
   set_sway_colors dark
   set_gtk_colors dark
-  lookandfeeltool -a org.kde.breezedark.desktop
+  command -v lookandfeeltool >/dev/null && lookandfeeltool -a org.kde.breezedark.desktop
   ;;
 light)
   set_alacritty_colors solarized_light
@@ -125,7 +125,7 @@ light)
   kitty +kitten themes --reload-in=all "Solarized Light"
   set_sway_colors light
   set_gtk_colors light
-  lookandfeeltool -a org.kde.breeze.desktop
+  command -v lookandfeeltool >/dev/null && lookandfeeltool -a org.kde.breeze.desktop
   ;;
 *)
   echo "usage: set-theme <dark|light>"
