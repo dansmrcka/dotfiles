@@ -2,7 +2,8 @@
   "check_for_updates": false,
   "editor": {
     "show_horizontal_scrollbar": true,
-    "show_vertical_scrollbar": false
+    "show_vertical_scrollbar": false,
+    "relative_line_numbers": true
   },
   "version": 2,
   "lsp": {
@@ -31,7 +32,7 @@
     },
     "orchestrator": {
       "settings": {
-        "autoOpenDock": "never"
+        "autoOpenDock": "always"
       }
     }
   },
@@ -63,7 +64,7 @@
     { "key": "[", "modifiers": ["alt"], "action": "prev_split", "when": "global" },
     { "key": "]", "modifiers": ["alt"], "action": "next_split", "when": "global" },
     { "key": "i", "modifiers": ["alt"], "action": "focus_editor", "when": "fileExplorer" },
-    { "key": "i", "modifiers": ["alt"], "action": "focus_file_explorer", "when": "global" },
+    { "key": "i", "modifiers": ["alt"], "action": "explorer_focus", "when": "global" },
     { "key": "g", "modifiers": ["alt"], "action": "toggle_dock_focus", "when": "global" },
     { "keys": [{ "key": ",", "modifiers": [] }, { "key": "n", "modifiers": [] }], "action": "toggle_file_explorer", "when": "mode:vi-normal" },
     { "key": ":", "modifiers": [], "action": "ex_prompt", "when": "mode:vi-normal" },
@@ -74,10 +75,21 @@
     { "keys": [{ "key": "w", "modifiers": ["ctrl"] }, { "key": "w", "modifiers": [] }], "action": "next_split", "when": "mode:vi-normal" },
     { "keys": [{ "key": "g", "modifiers": [] }, { "key": "T", "modifiers": ["shift"] }], "action": "prev_buffer", "when": "mode:vi-normal" },
     { "keys": [{ "key": "g", "modifiers": [] }, { "key": "t", "modifiers": [] }], "action": "next_buffer", "when": "mode:vi-normal" },
-    { "key": "h", "modifiers": ["alt"], "action": "win_focus_left", "when": "global" },
-    { "key": "j", "modifiers": ["alt"], "action": "win_focus_down", "when": "global" },
-    { "key": "k", "modifiers": ["alt"], "action": "win_focus_up", "when": "global" },
-    { "key": "l", "modifiers": ["alt"], "action": "win_focus_right", "when": "global" }
+    { "key": "S", "modifiers": ["shift"], "action": "explorer_open_hsplit", "when": "fileExplorer" },
+    { "key": "A", "modifiers": ["shift"], "action": "file_explorer_new_directory", "when": "fileExplorer" },
+    { "key": "H", "modifiers": ["shift"], "action": "file_explorer_toggle_hidden", "when": "fileExplorer" },
+    { "key": "R", "modifiers": ["shift"], "action": "file_explorer_refresh", "when": "fileExplorer" },
+    { "key": "j", "modifiers": [], "action": "file_explorer_down", "when": "fileExplorer" },
+    { "key": "k", "modifiers": [], "action": "file_explorer_up", "when": "fileExplorer" },
+    { "key": "h", "modifiers": [], "action": "file_explorer_collapse", "when": "fileExplorer" },
+    { "key": "l", "modifiers": [], "action": "file_explorer_open", "when": "fileExplorer" },
+    { "key": "s", "modifiers": [], "action": "explorer_open_vsplit", "when": "fileExplorer" },
+    { "key": "a", "modifiers": [], "action": "file_explorer_new_file", "when": "fileExplorer" },
+    { "key": "r", "modifiers": [], "action": "file_explorer_rename", "when": "fileExplorer" },
+    { "key": "q", "modifiers": [], "action": "toggle_file_explorer", "when": "fileExplorer" }
   ],
-  "theme": "builtin://terminal"
+  "theme": "builtin://terminal",
+  "file_explorer": {
+    "show_hidden": true
+  }
 }
