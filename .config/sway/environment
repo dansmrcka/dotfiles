@@ -1,0 +1,14 @@
+# Nacita /usr/bin/start-sway pred spustenim sway (POSIX sh, allexport).
+#
+# Pockat, az skonci sway prihlasovaci obrazovky (sddm greeter). sddm ho
+# ukoncuje az tesne pred startem session, a dokud nepusti DRM master, logind
+# vrati na /dev/dri/card1 "Device or resource busy" a sway spadne zpet na
+# login (2026-11-02, s dokem a dvema externimi monitory to greeteru trva dyl).
+# Max 5 s, pak se pokracuje tak jako tak.
+_greeter_wait=0
+while pgrep -u sddm -x sway >/dev/null 2>&1 \
+      && [ "$_greeter_wait" -lt 50 ]; do
+    sleep 0.1
+    _greeter_wait=$((_greeter_wait + 1))
+done
+unset _greeter_wait
