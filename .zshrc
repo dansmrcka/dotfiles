@@ -10,6 +10,7 @@ export BROWSER="brave"
 export VIDEO="cvlc"
 export IMAGE="imv"
 export COLORTERM="truecolor"
+export FRESH_COLOR_MODE=256  # Fresh: ANSI barvy terminalu z palety kitty, ne vlastni RGB
 export OPENER="xdg-open"
 export PAGER="less"
 export GPG_TTY=$(tty)
